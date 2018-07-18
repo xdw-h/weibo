@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
+	<package name="default" extends="json-default" >
+	<interceptors>
+			<interceptor name="character" class="com.weibo.util.CharacterInterceptor"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="character"></interceptor-ref>
+			</interceptor-stack>
+	</interceptors>
+<!-- 	<default-interceptor-ref name="myStack"></default-interceptor-ref> --> <!-- 全局拦截 -->
+	<action name="test" class="Commentbean"  method="test">
+		<result type="json">
+			<param name="root">list</param>
+		</result>
+	</action>
+	<action name="test2" class="Commentbean"  method="testInterceptor">
+		<interceptor-ref name="myStack"></interceptor-ref>
+		<result type="json">
+			<param name="root">c</param>
+		</result>
+	</action>
+	</package>
 </struts>    

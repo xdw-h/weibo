@@ -31,10 +31,22 @@
 			<list>
 				<value>com/weibo/entity/Usermsg.hbm.xml</value>
 				<value>com/weibo/entity/Weibo.hbm.xml</value>
-				<value>com/weibo/entity/Comment.hbm.xml</value></list>
+				<value>com/weibo/entity/Comments.hbm.xml</value></list>
 		</property></bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" /></beans>
+	
+	<bean id="Basebean" class="com.weibo.dao.BaseDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="CommentDAO" class="com.weibo.dao.CommentDAOimp" parent="Basebean">
+	</bean>
+	<bean id="CommentService" class="com.weibo.service.CommentServiceimp">
+		<property name="commentdao" ref="CommentDAO"></property>
+	</bean>
+	<bean id="Commentbean" class="com.weibo.action.CommentAction">
+		<property name="service" ref="CommentService"></property>
+	</bean>
+</beans>

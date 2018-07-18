@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * Comment entity. @author MyEclipse Persistence Tools
  */
 
-public class Comment implements java.io.Serializable {
+public class Comments implements java.io.Serializable {
 
 	// Fields
 
@@ -21,18 +21,18 @@ public class Comment implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Comment() {
+	public Comments() {
 	}
 
 	/** minimal constructor */
-	public Comment(String type, Timestamp postdate, Integer highlight) {
+	public Comments(String type, Timestamp postdate, Integer highlight) {
 		this.type = type;
 		this.postdate = postdate;
 		this.highlight = highlight;
 	}
 
 	/** full constructor */
-	public Comment(String author, String content, Integer from, String type,
+	public Comments(String author, String content, Integer from, String type,
 			Timestamp postdate, Integer highlight) {
 		this.author = author;
 		this.content = content;
