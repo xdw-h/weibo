@@ -9,14 +9,14 @@
 				<interceptor-ref name="character"></interceptor-ref>
 			</interceptor-stack>
 	</interceptors>
-<!-- 	<default-interceptor-ref name="myStack"></default-interceptor-ref> --> <!-- 全局拦截 -->
+	<!-- 	<default-interceptor-ref name="myStack"></default-interceptor-ref> --> <!-- 全局拦截 -->
 	<action name="test" class="Commentbean"  method="test">
 		<result type="json">
 			<param name="root">list</param>
 		</result>
 	</action>
 	<action name="test2" class="Commentbean"  method="testInterceptor">
-		<interceptor-ref name="myStack"></interceptor-ref>
+<!-- 		<interceptor-ref name="myStack"></interceptor-ref> -->
 		<result type="json">
 			<param name="root">js</param>
 		</result>
@@ -24,5 +24,35 @@
 	<action name="test3" class="Commentbean" method="test3">
 		<result>index.jsp</result>
 	</action>
+	<action name="login" class="com.weibo.action.AdminAction" method="login">
+       <result name="success">/main.jsp</result>
+       <result name="input">/login-register.jsp</result>
+    </action>
+    <action name="queryName" class="com.weibo.action.AdminAction" method="queryName">
+		<result type="json">
+			<param name="root">info</param>
+		</result>
+	</action>
+	<action name="register" class="com.weibo.action.AdminAction" method="register">
+       <result name="success">/login-register.jsp</result>
+    </action>
+    		<action name="logout" class="com.weibo.action.AdminAction" method="logout">
+			<result>/login-register.jsp</result>
+		</action>
+		<action name="updateload" class="com.weibo.action.AdminAction"
+			method="updateload">
+			<result name="success">/update.jsp</result>
+		</action>
+		<action name="updateAdmin" class="com.weibo.action.AdminAction"
+			method="updateAdmin">
+			<result name="success">/main.jsp</result>
+		</action>
+		
+<action name="search" class="WBSAction" >
+	<result  type="json">
+</result></action>
+		<action name="turncomment" class="Commentbean" method="turncomment">
+			<result name="success">/index.jsp</result>
+		</action>
 	</package>
 </struts>    

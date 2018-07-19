@@ -11,7 +11,7 @@ public class Usermsg implements java.io.Serializable {
 	private Integer id;
 	private String username;
 	private String password;
-	private String phone;
+	private String email;
 	private String sex;
 	private String img;
 
@@ -22,18 +22,18 @@ public class Usermsg implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Usermsg(String username, String password, String img) {
+	public Usermsg(String username, String password, String email) {
 		this.username = username;
 		this.password = password;
-		this.img = img;
+		this.email = email;
 	}
 
 	/** full constructor */
-	public Usermsg(String username, String password, String phone, String sex,
+	public Usermsg(String username, String password, String email, String sex,
 			String img) {
 		this.username = username;
 		this.password = password;
-		this.phone = phone;
+		this.email = email;
 		this.sex = sex;
 		this.img = img;
 	}
@@ -64,12 +64,12 @@ public class Usermsg implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public String getPhone() {
-		return this.phone;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSex() {

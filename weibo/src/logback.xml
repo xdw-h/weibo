@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scan="true" scanPeriod="30 seconds"
+               debug="true"
+               xmlns="http://ch.qos.logback/xml/ns/logback"
+               xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback
+               https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd
+               http://ch.qos.logback/xml/ns/logback ">
+
+    <!--<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">-->
+    <!--<resetJUL>true</resetJUL>-->
+    <!--</contextListener>-->
+
+    <!--<jmxConfigurator/>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.struts2.interceptor.I18nInterceptor" level="WARN" additivity="false"/>
+    <logger name="com.opensymphony.xwork2.ognl.SecurityMemberAccess" level="WARN" additivity="false"/>
+    <logger name="com.opensymphony.xwork2.conversion.impl.XWorkConverter" level="WARN" additivity="false"/>
+    <logger name="com.opensymphony.xwork2.conversion.impl.InstantiatingNullHandler" level="WARN" additivity="false"/>
+    <logger name="com.opensymphony.xwork2.config.ConfigurationManager" level="WARN" additivity="false"/>
+    <logger name="com.opensymphony.xwork2.interceptor.PrefixMethodInvocationUtil" level="WARN" additivity="false"/>
+    <logger name="org.hibernate.SQL" additivity="false" level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.hibernate.type" additivity="false" level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

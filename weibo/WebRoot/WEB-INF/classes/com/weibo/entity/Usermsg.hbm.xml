@@ -8,7 +8,7 @@
     <class name="com.weibo.entity.Usermsg" table="usermsg" catalog="weibo">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="native" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="50" not-null="true" unique="true" />
@@ -16,14 +16,14 @@
         <property name="password" type="java.lang.String">
             <column name="password" length="50" not-null="true" />
         </property>
-        <property name="phone" type="java.lang.String">
-            <column name="phone" length="50" />
+        <property name="email" type="java.lang.String">
+            <column name="email" length="50" not-null="true" />
         </property>
         <property name="sex" type="java.lang.String">
             <column name="sex" length="10" />
         </property>
         <property name="img" type="java.lang.String">
-            <column name="img" length="50" not-null="true" />
+            <column name="img" length="50" />
         </property>
     </class>
 </hibernate-mapping>

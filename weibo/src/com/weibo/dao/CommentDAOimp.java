@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 
 import com.weibo.entity.Comments;
 
-public class CommentDAOimp extends BaseDAO implements CommentDAO {
+public class CommentDAOimp extends BaseDAO1 implements CommentDAO {
 
 	@Override
 	public List<Comments> find(int from, String type) {

@@ -1,11 +1,9 @@
 package com.weibo.dao;
 
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-
-public class BaseDAO {
+public class BaseDAO1 {
 	private SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

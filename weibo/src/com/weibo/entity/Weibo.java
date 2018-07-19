@@ -13,7 +13,7 @@ public class Weibo implements java.io.Serializable {
 	private Integer id;
 	private String title;
 	private String content;
-	private Integer author;
+	private String author;
 	private Timestamp posttime;
 	private Timestamp updatetime;
 
@@ -24,7 +24,7 @@ public class Weibo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Weibo(String title, String content, Integer author,
+	public Weibo(String title, String content, String author,
 			Timestamp posttime, Timestamp updatetime) {
 		this.title = title;
 		this.content = content;
@@ -59,11 +59,11 @@ public class Weibo implements java.io.Serializable {
 		this.content = content;
 	}
 
-	public Integer getAuthor() {
+	public String getAuthor() {
 		return this.author;
 	}
 
-	public void setAuthor(Integer author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 

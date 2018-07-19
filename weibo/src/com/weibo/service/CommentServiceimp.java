@@ -6,12 +6,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.weibo.dao.BaseDAO;
 import com.weibo.dao.CommentDAO;
 import com.weibo.entity.Comments;
 import com.weibo.util.Commentpage;
 
-public class CommentServiceimp extends BaseDAO implements CommentService {
+public class CommentServiceimp  implements CommentService {
 
 	CommentDAO commentdao;
 	List<Commentpage> list;

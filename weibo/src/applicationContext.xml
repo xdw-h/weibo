@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       xmlns:tx="http://www.springframework.org/schema/tx">
 
-
+    <context:component-scan base-package="com.weibo"/>
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -13,7 +13,7 @@
 			value="jdbc:mysql://localhost:3306/weibo?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -33,22 +33,43 @@
 				<value>com/weibo/entity/Weibo.hbm.xml</value>
 				<value>com/weibo/entity/Comments.hbm.xml</value></list>
 		</property></bean>
+		
+	<bean id="adminDao" class="com.weibo.dao.AdminDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="adminService" class="com.weibo.service.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	<bean id="adminAction" class="com.weibo.action.AdminAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="Basebean1" class="com.weibo.dao.BaseDAO1">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="characterInterceptor" class="com.weibo.util.CharacterInterceptor"></bean>
 	
-	<bean id="characterInterceptor" class="com.weibo.util.CharacterInterceptor">
+	<bean id="weiboDao" class="com.weibo.dao.WeiboDaoImpl">
+	<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<bean id="Basebean" class="com.weibo.dao.BaseDAO">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	
+	<bean id="weiboService" class="com.weibo.service.WeiboServiceImpl">
+	<property name="weiboDao" ref="weiboDao"/>
 	</bean>
-	<bean id="CommentDAO" class="com.weibo.dao.CommentDAOimp" parent="Basebean">
+		
+	<bean id="WBSAction" class="com.weibo.action.WeiboSearchAction" scope="prototype">
+	<property name="weiboService" ref="weiboService"/>
 	</bean>
-	<bean id="CommentService" class="com.weibo.service.CommentServiceimp">
-		<property name="commentdao" ref="CommentDAO"></property>
-	</bean>
+	<bean id="CommentDAO" class="com.weibo.dao.CommentDAOimp" parent="Basebean1"></bean>
+	<bean id="CommentService" class="com.weibo.service.CommentServiceimp"> 
+ 		<property name="commentdao" ref="CommentDAO"></property> 
+ 	</bean> 
 	<bean id="Commentbean" class="com.weibo.action.CommentAction">
-		<property name="service" ref="CommentService"></property>
+		<property name="service"  ref="CommentService"></property>
+		<property name="wservice"  ref="weiboService"></property>
 	</bean>
+    <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
