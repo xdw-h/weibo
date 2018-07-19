@@ -40,6 +40,22 @@
 	
 	<script src="js/jquery-3.1.0.js"></script>
  <script type="text/javascript"> 
+ function interval(time) {
+            var date = new Date(time);
+            var intervalMilliseconds = new Date().getTime() - date.getTime();
+            if (Math.floor(intervalMilliseconds / (24 * 3600 * 1000)) > 1)
+                return date.toISOString().substring(0, 10);
+            var leave1 = intervalMilliseconds % (24 * 3600 * 1000)
+            var hours = Math.floor(leave1 / (3600 * 1000))
+            var leave2 = leave1 % (3600 * 1000)
+            var minutes = Math.floor(leave2 / (60 * 1000))
+            var leave3 = leave2 % (60 * 1000)
+            var seconds = Math.round(leave3 / 1000)
+            if (hours > 1) return hours + "小时前";
+            if (minutes > 1) return minutes + "分钟前";
+            return seconds + "秒前";
+        }
+ 
 	 $(document).ready(function(){
 	 	//定义全局变量
 	var keyword = $("#keyword").val();
@@ -102,14 +118,14 @@ function MouseOut(obj)
    var k2 = $("#author_id").val();
    var k3=  $("#Wid").val();
 
-   if(k1==k2){
-    $.post("delete.action",{"WID":k3},function(){
-    
-    });
-   }
-   else{
-  
-   }
+	   if(k1==k2){
+	    $.post("delete.action",{"WID":k3},function(){
+	    });
+	    return true;
+	   }
+	   else{
+	  	return false;s
+	   }
    }
  
   </script>
@@ -167,8 +183,7 @@ function MouseOut(obj)
 
 				<div class="row item_msg" style="height: 190px; width: 543px;float:left;margin:100px">
 				<s:iterator id="Weibo" value="list2">
-					<div class="col-sm-12 col-xs-12 message">
-					
+					<div class="col-sm-12 col-xs-12 message">					
 						<img src="img/icon.png" class="col-sm-2 col-xs-2"
 							style="border-radius: 50%">
 						<div class="col-sm-10 col-xs-10" style="width: 676px; ">
@@ -176,7 +191,7 @@ function MouseOut(obj)
 							<span id="WAu" style="font-weight: bold;"><s:property value="#Weibo.author"/></span> <br> <small
 								class="date" style="color:#999"><s:property value="#Weibo.posttime"/></small>
 							<div class="msg_content"> <s:property value="#Weibo.content"/></div>
-							<s:a onclick="deleteW();return confirm('确认删除该信息？');" >删除</s:a>
+							<s:a onclick="return confirm('确认删除该信息？') && deleteW();;" >删除</s:a>
 
 						</div>
 						

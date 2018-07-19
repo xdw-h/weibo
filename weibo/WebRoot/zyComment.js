@@ -1,21 +1,35 @@
 var fCode = 0;
+var author = "";
+function getauthor(au){
+	author = au;
+}
+function checkauthor(){
+	var html=""
+	if(author==""){
+		html="<a href='main.jsp' >请登录</a>"
+	}
+	else{
+		html=author
+	}
+	return html;
+}
 function createFormCommentHtml(self,wid){
 	// 先添加父容器
 	$(self).append('<div id="commentFrom"></div>');
 	
 	// 组织发表评论的form html代码
 	var boxHtml = '';
-	boxHtml += '<form id="replyBoxAri" class="ui reply form">';
+	boxHtml += '<form id="replyBoxAri" class="ui reply form" style="margin:30px">';
 	boxHtml += '	<div class="ui large form ">';
 	boxHtml += '		<div class="two fields">';
 	boxHtml += '			<div class="field" >';
-	boxHtml += '				<input type="text" id="userName" />';
-	boxHtml += '				<label class="userNameLabel" for="userName">Your Name</label>';
+//	boxHtml += '				<input type="text" id="userName" />';
+	boxHtml += '				<label class="userNameLabel" for="userName"  style="color:black">' + checkauthor() + '</label>';
 	boxHtml += '			</div>';
-	boxHtml += '			<div class="field" >';
-	boxHtml += '				<input type="text" id="userEmail" />';
-	boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
-	boxHtml += '			</div>';
+//	boxHtml += '			<div class="field" >';
+//	boxHtml += '				<input type="text" id="userEmail" />';
+//	boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
+//	boxHtml += '			</div>';
 	boxHtml += '		</div>';
 	boxHtml += '		<div class="contentField field" >';
 	boxHtml += '			<textarea id="commentContent"></textarea>';
@@ -49,7 +63,12 @@ function addEvent(self,wid){
  */
 function replyClickEvent(self,wid){
 	// 绑定回复按钮点击事件
+	
 	$(self).find(".actions .reply").live("click", function(){
+		if(author == ''){
+			alert("请登录");
+			return;
+		}
 		// 设置当前回复的评论的id
 		fCode = $(this).attr("selfid");
 		
@@ -68,8 +87,9 @@ function replyClickEvent(self,wid){
 		// 绑定提交事件
 		$("#publicComment").die("click");
 		$("#publicComment").live("click",function(){
+			if(author == "") return;
 			var param = {
-					"c.author":$("#userName").val(),
+					"c.author":author,
 					"c.content":$("#commentContent").val(),
 					"c.wfrom":Number(fCode),
 					"c.weiboid":Number(wid),
@@ -78,7 +98,6 @@ function replyClickEvent(self,wid){
 					// "email":$("#userEmail").val(),
 					// "content":$("#commentContent").val()
 			}
-			
 			$.ajax({
 				type:"post",
 				url:"test2.action",
@@ -148,7 +167,7 @@ function addFormEvent  (self,wid){
 	$("#submitComment").die("click");
 	$("#submitComment").live("click",function(){
 		var param = {
-			"c.author":$("#userName").val(),
+			"c.author":author,
 			"c.content":$("#commentContent").val(),
 			"c.wfrom":Number(wid),
 			"c.weiboid":Number(wid),
@@ -191,17 +210,17 @@ function removeAllCommentFrom(self){
 // 添加回复下的回复框
 function addReplyCommentFrom (self,id){
 	var boxHtml = '';
-	boxHtml += '<form id="replyBox" class="ui reply form">';
+	boxHtml += '<form id="replyBox" class="ui reply form" style="margin:30px">';
 	boxHtml += '	<div class="ui  form ">';
 	//boxHtml += '		<div class="two fields">'
 	boxHtml += '			<div class="field" >';
-	boxHtml += '				<input type="text" id="userName" />';
-	boxHtml += '				<label class="userNameLabel" for="userName">Your Name</label>';
+//	boxHtml += '				<input type="text" id="userName" />';
+	boxHtml += '				<label class="userNameLabel" for="userName" style="color:black">'+checkauthor()+'</label>';
 	boxHtml += '			</div>';
-	boxHtml += '			<div class="field" >';
-	boxHtml += '				<input type="text" id="userEmail" />';
-	boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
-	boxHtml += '			</div>';
+//	boxHtml += '			<div class="field" >';
+//	boxHtml += '				<input type="text" id="userEmail" />';
+//	boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
+//	boxHtml += '			</div>';
 	//boxHtml += '		</div>';
 	boxHtml += '		<div class="contentField field" >';
 	boxHtml += '			<textarea id="commentContent"></textarea>';
@@ -220,17 +239,17 @@ function addReplyCommentFrom (self,id){
 // 添加根下的回复框
 function addRootCommentFrom (self){
 	var boxHtml = '';
-	boxHtml += '<form id="replyBoxAri" class="ui reply form">';
+	boxHtml += '<form id="replyBoxAri" class="ui reply form" style="margin:30px">';
 	boxHtml += '	<div class="ui large form ">';
 	boxHtml += '		<div class="two fields">';
 	boxHtml += '			<div class="field" >';
-	boxHtml += '				<input type="text" id="userName" />';
-	boxHtml += '				<label class="userNameLabel" for="userName">Your Name</label>';
+//	boxHtml += '				<input type="text" id="userName" />';
+	boxHtml += '				<label class="userNameLabel" for="userName" style="color:black">'+checkauthor()+'</label>';
 	boxHtml += '			</div>';
-	boxHtml += '			<div class="field" >';
-	boxHtml += '				<input type="text" id="userEmail" />';
-	boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
-	boxHtml += '			</div>';
+//	boxHtml += '			<div class="field" >';
+//	boxHtml += '				<input type="text" id="userEmail" />';
+//	boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
+//	boxHtml += '			</div>';
 	boxHtml += '		</div>';
 	boxHtml += '		<div class="contentField field" >';
 	boxHtml += '			<textarea id="commentContent"></textarea>';

@@ -72,6 +72,7 @@ public class CommentAction extends ActionSupport{
 	}
 	public String testInterceptor(){
 		service.addComment(c);
+		System.out.println(c.getWeiboid());
 		js = new json();
 		js.setSuccess(true);
 		js.setMsg("提交成功");

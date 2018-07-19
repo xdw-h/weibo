@@ -41,7 +41,7 @@ public class CommentDAOimp extends BaseDAO1 implements CommentDAO {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Transaction ts = session.beginTransaction();
-		String hql = "Delete from Comment c where c.weiboid = ?";
+		String hql = "Delete from Comments c where c.weiboid = ?";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, id);
 		query.executeUpdate();

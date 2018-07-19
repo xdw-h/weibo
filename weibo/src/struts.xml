@@ -16,7 +16,7 @@
 		</result>
 	</action>
 	<action name="test2" class="Commentbean"  method="testInterceptor">
-<!-- 		<interceptor-ref name="myStack"></interceptor-ref> -->
+ 		<interceptor-ref name="myStack"></interceptor-ref>
 		<result type="json">
 			<param name="root">js</param>
 		</result>
