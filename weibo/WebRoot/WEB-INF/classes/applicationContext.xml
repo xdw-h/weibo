@@ -53,14 +53,12 @@
 	<bean id="characterInterceptor" class="com.weibo.util.CharacterInterceptor"></bean>
 	
 	<bean id="weiboDao" class="com.weibo.dao.WeiboDaoImpl">
-	<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	
-	<bean id="weiboService" class="com.weibo.service.WeiboServiceImpl">
-	<property name="weiboDao" ref="weiboDao"/>
-	</bean>
-		
 	<bean id="WBSAction" class="com.weibo.action.WeiboSearchAction" scope="prototype">
+	<property name="weiboService" ref="weiboService"/>
+	</bean>
+	<bean id="WBDAction" class="com.weibo.action.WeiboDeleteAction" scope="prototype">
 	<property name="weiboService" ref="weiboService"/>
 	</bean>
 	<bean id="CommentDAO" class="com.weibo.dao.CommentDAOimp" parent="Basebean1"></bean>
@@ -70,6 +68,10 @@
 	<bean id="Commentbean" class="com.weibo.action.CommentAction">
 		<property name="service"  ref="CommentService"></property>
 		<property name="wservice"  ref="weiboService"></property>
+	</bean>
+	<bean id="weiboService" class="com.weibo.service.WeiboServiceImpl">
+		<property name="weiboDao" ref="weiboDao"/>
+		<property name="cdao" ref="CommentDAO"></property>
 	</bean>
     <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

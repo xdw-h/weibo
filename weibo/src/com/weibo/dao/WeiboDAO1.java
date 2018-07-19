@@ -9,4 +9,5 @@ public interface WeiboDAO1 {
 
 	public List<Weibo> search(String keyword);
 	public Weibo find(int id);
+	public void delete(Integer WID);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 
 
@@ -36,5 +37,12 @@ public class WeiboDaoImpl implements WeiboDAO1{
 		session.close();
 		return w;
 	}
-	
+	public void delete(Integer WID){
+		Session session=sessionFactory.openSession();
+		Transaction tx=session.beginTransaction();
+		Weibo n=(Weibo)session.get(Weibo.class, WID);
+		session.delete(n);
+		tx.commit();
+		session.close();
+	}
 }

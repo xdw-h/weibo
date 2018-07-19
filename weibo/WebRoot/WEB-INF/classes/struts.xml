@@ -51,6 +51,15 @@
 <action name="search" class="WBSAction" >
 	<result  type="json">
 </result></action>
+<action name="search2" class="WBSAction">
+	<result name="success">/show.jsp
+	</result>
+</action>
+
+	<action name="delete" class="WBDAction">
+		<result name="success" type="redirectAction">search2
+		</result>
+	</action>
 		<action name="turncomment" class="Commentbean" method="turncomment">
 			<result name="success">/index.jsp</result>
 		</action>
