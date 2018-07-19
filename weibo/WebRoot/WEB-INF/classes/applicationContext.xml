@@ -38,6 +38,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="characterInterceptor" class="com.weibo.util.CharacterInterceptor">
+	</bean>
 	<bean id="Basebean" class="com.weibo.dao.BaseDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

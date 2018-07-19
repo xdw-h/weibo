@@ -7,4 +7,5 @@ import com.weibo.entity.Comments;
 public interface CommentDAO {
 	List<Comments> find(int from,String type);
 	void add(Comments c);
+	void delete(int id);
 }

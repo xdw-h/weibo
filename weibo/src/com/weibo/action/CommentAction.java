@@ -7,11 +7,13 @@ import com.weibo.entity.Comments;
 
 import com.weibo.service.CommentService;
 import com.weibo.util.Commentpage;
+import com.weibo.util.json;
 public class CommentAction extends ActionSupport{
-	Comments c;
-	int id;
-	List<Commentpage> list;
-	CommentService service;
+	private Comments c;
+	private int id;
+	private List<Commentpage> list;
+	private CommentService service;
+	private json js;
 	public Comments getC() {
 		return c;
 	}
@@ -50,6 +52,21 @@ public class CommentAction extends ActionSupport{
 	}
 	public String testInterceptor(){
 		service.addComment(c);
+		js = new json();
+		js.setSuccess(true);
+		js.setMsg("发布成功");
+		return SUCCESS;
+	}
+	public json getJs() {
+		return js;
+	}
+
+	public void setJs(json js) {
+		this.js = js;
+	}
+
+	public String test3(){
+		service.deleteComment(id);
 		return SUCCESS;
 	}
 }

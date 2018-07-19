@@ -8,4 +8,5 @@ import com.weibo.util.Commentpage;
 public interface CommentService {
 	List<Commentpage> showComment(int from);
 	void addComment(Comments c);
+	void deleteComment(int id);
 }

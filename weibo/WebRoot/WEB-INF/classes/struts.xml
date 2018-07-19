@@ -3,7 +3,7 @@
 <struts>
 	<package name="default" extends="json-default" >
 	<interceptors>
-			<interceptor name="character" class="com.weibo.util.CharacterInterceptor"></interceptor>
+			<interceptor name="character" class="characterInterceptor"></interceptor>
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 				<interceptor-ref name="character"></interceptor-ref>
@@ -18,8 +18,11 @@
 	<action name="test2" class="Commentbean"  method="testInterceptor">
 		<interceptor-ref name="myStack"></interceptor-ref>
 		<result type="json">
-			<param name="root">c</param>
+			<param name="root">js</param>
 		</result>
+	</action>
+	<action name="test3" class="Commentbean" method="test3">
+		<result>index.jsp</result>
 	</action>
 	</package>
 </struts>    

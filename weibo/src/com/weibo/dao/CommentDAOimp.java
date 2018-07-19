@@ -16,7 +16,7 @@ public class CommentDAOimp extends BaseDAO implements CommentDAO {
 	public List<Comments> find(int from, String type) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql="from Comments c where c.from=? and c.type=? order by postdate asc";
+		String hql="from Comments c where c.wfrom=? and c.wtype=? order by postdate asc";
 //		String hql="from Comments";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, from);
@@ -34,7 +34,19 @@ public class CommentDAOimp extends BaseDAO implements CommentDAO {
 		session.save(c);
 		ts.commit();
 		session.close();
+	}
 
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Transaction ts = session.beginTransaction();
+		String hql = "Delete from Comment c where c.weiboid = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, id);
+		query.executeUpdate();
+		ts.commit();
+		session.close();
 	}
 
 }

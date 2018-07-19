@@ -14,12 +14,12 @@
             <column name="author" />
         </property>
         <property name="content" type="java.lang.String">
-            <column name="content" length="65535" />
+            <column name="content" />
         </property>
-        <property name="from" type="java.lang.Integer">
+        <property name="wfrom" type="java.lang.Integer">
             <column name="wfrom" />
         </property>
-        <property name="type" type="java.lang.String">
+        <property name="wtype" type="java.lang.String">
             <column name="wtype" length="50" not-null="true" />
         </property>
         <property name="postdate" type="java.sql.Timestamp">
@@ -27,6 +27,9 @@
         </property>
         <property name="highlight" type="java.lang.Integer">
             <column name="highlight" not-null="true" />
+        </property>
+        <property name="weiboid" type="java.lang.Integer">
+            <column name="weiboid" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

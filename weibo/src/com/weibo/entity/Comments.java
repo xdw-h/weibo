@@ -13,10 +13,11 @@ public class Comments implements java.io.Serializable {
 	private Integer id;
 	private String author;
 	private String content;
-	private Integer from;
-	private String type;
+	private Integer wfrom;
+	private String wtype;
 	private Timestamp postdate;
 	private Integer highlight;
+	private Integer weiboid;
 
 	// Constructors
 
@@ -25,21 +26,24 @@ public class Comments implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Comments(String type, Timestamp postdate, Integer highlight) {
-		this.type = type;
+	public Comments(String wtype, Timestamp postdate, Integer highlight,
+			Integer weiboid) {
+		this.wtype = wtype;
 		this.postdate = postdate;
 		this.highlight = highlight;
+		this.weiboid = weiboid;
 	}
 
 	/** full constructor */
-	public Comments(String author, String content, Integer from, String type,
-			Timestamp postdate, Integer highlight) {
+	public Comments(String author, String content, Integer wfrom, String wtype,
+			Timestamp postdate, Integer highlight, Integer weiboid) {
 		this.author = author;
 		this.content = content;
-		this.from = from;
-		this.type = type;
+		this.wfrom = wfrom;
+		this.wtype = wtype;
 		this.postdate = postdate;
 		this.highlight = highlight;
+		this.weiboid = weiboid;
 	}
 
 	// Property accessors
@@ -68,20 +72,20 @@ public class Comments implements java.io.Serializable {
 		this.content = content;
 	}
 
-	public Integer getFrom() {
-		return this.from;
+	public Integer getWfrom() {
+		return this.wfrom;
 	}
 
-	public void setFrom(Integer from) {
-		this.from = from;
+	public void setWfrom(Integer wfrom) {
+		this.wfrom = wfrom;
 	}
 
-	public String getType() {
-		return this.type;
+	public String getWtype() {
+		return this.wtype;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setWtype(String wtype) {
+		this.wtype = wtype;
 	}
 
 	public Timestamp getPostdate() {
@@ -98,6 +102,14 @@ public class Comments implements java.io.Serializable {
 
 	public void setHighlight(Integer highlight) {
 		this.highlight = highlight;
+	}
+
+	public Integer getWeiboid() {
+		return this.weiboid;
+	}
+
+	public void setWeiboid(Integer weiboid) {
+		this.weiboid = weiboid;
 	}
 
 }

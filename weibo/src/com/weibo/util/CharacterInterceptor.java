@@ -13,7 +13,7 @@ public class CharacterInterceptor extends AbstractInterceptor {
 	public String intercept(ActionInvocation arg0) throws Exception {
 		// TODO Auto-generated method stub
 		CommentAction na=(CommentAction)arg0.getAction();
-		Comments c=na.getC();
+		Comments c= na.getC();
 		String content=c.getContent();
 		if(content.contains("fuck")){
 		content=content.replaceAll("fuck", "***");

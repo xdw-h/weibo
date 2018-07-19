@@ -74,5 +74,10 @@ public class CommentServiceimp extends BaseDAO implements CommentService {
 		c.setHighlight(0);
 		commentdao.add(c);
 	}
+	@Override
+	public void deleteComment(int id) {
+		// TODO Auto-generated method stub
+		commentdao.delete(id);
+	}
 
 }
