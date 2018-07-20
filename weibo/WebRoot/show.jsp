@@ -40,24 +40,11 @@
 	
 	<script src="js/jquery-3.1.0.js"></script>
  <script type="text/javascript"> 
- function interval(time) {
-            var date = new Date(time);
-            var intervalMilliseconds = new Date().getTime() - date.getTime();
-            if (Math.floor(intervalMilliseconds / (24 * 3600 * 1000)) > 1)
-                return date.toISOString().substring(0, 10);
-            var leave1 = intervalMilliseconds % (24 * 3600 * 1000)
-            var hours = Math.floor(leave1 / (3600 * 1000))
-            var leave2 = leave1 % (3600 * 1000)
-            var minutes = Math.floor(leave2 / (60 * 1000))
-            var leave3 = leave2 % (60 * 1000)
-            var seconds = Math.round(leave3 / 1000)
-            if (hours > 1) return hours + "小时前";
-            if (minutes > 1) return minutes + "分钟前";
-            return seconds + "秒前";
-        }
+
  
 	 $(document).ready(function(){
 	 	//定义全局变量
+	 var s = ${list2};
 	var keyword = $("#keyword").val();
 	var sel = document.getElementById("sel");
 	
@@ -113,18 +100,22 @@ function MouseOut(obj)
   
   </script>
 <script>
-   function deleteW(){
-   var k1 = $("#WAu").val();
-   var k2 = $("#author_id").val();
-   var k3=  $("#Wid").val();
-
+   function deleteW(element){
+   var k1 = $(element).attr('data');
+   var k2 = $("#author_id").html();
+   var k3=  $(element).attr('wid');
+  console.log(k1);
+  console.log(k2);	
+  console.log(k3);
+	
 	   if(k1==k2){
-	    $.post("delete.action",{"WID":k3},function(){
+	    $.post("delete.action",{"WID":k3},function(data, stuts){
+	        window.location.reload(true);
 	    });
 	    return true;
 	   }
 	   else{
-	  	return false;s
+	  	return false;
 	   }
    }
  
@@ -143,7 +134,7 @@ function MouseOut(obj)
 			<form class="navbar-form navbar-left"  role="search" action="search2">
 				<div class="form-group" >
 
-					<input type="text" id="keyword" name="keyword" placeholder="#热门话题#" autocomplete="off">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="text" id="keyword" name="keyword" placeholder="#热门话题#" autocomplete="off" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					
 					<button  type="submit" style="height: 30px; width: 26px" class="glyphicon glyphicon-search btn_search" ></button></br>
 
@@ -181,18 +172,22 @@ function MouseOut(obj)
 			
 
 
-				<div class="row item_msg" style="height: 190px; width: 543px;float:left;margin:100px">
+				<div class="row item_msg" style="height: 250px; width: 676px;float:left;margin:100px">
 				<s:iterator id="Weibo" value="list2">
 					<div class="col-sm-12 col-xs-12 message">					
 						<img src="img/icon.png" class="col-sm-2 col-xs-2"
 							style="border-radius: 50%">
 						<div class="col-sm-10 col-xs-10" style="width: 676px; ">
-						<input  type="hidden" id="Wid" value="<s:property value="#Weibo.id"/>"/><br>
-							<span id="WAu" style="font-weight: bold;"><s:property value="#Weibo.author"/></span> <br> <small
+						<input  type="hidden" value="<s:property value="#Weibo.id"/>"/><br>
+							<span style="font-weight: bold;"><s:property value="#Weibo.author"/></span> <br> <small
 								class="date" style="color:#999"><s:property value="#Weibo.posttime"/></small>
-							<div class="msg_content"> <s:property value="#Weibo.content"/></div>
-							<s:a onclick="return confirm('确认删除该信息？') && deleteW();;" >删除</s:a>
-
+							<div class="msg_content"> <s:property value="#Weibo.content" escape="false"/>
+							
+						  	<s:if test="%{#Weibo.author == #session.login.username}"> 
+							<button onclick="return (confirm('确认删除该信息？') && deleteW(this))" wid="<s:property value="#Weibo.id"/>" data="<s:property value="#Weibo.author"/>" style="float:right">删除</button>
+							 </s:if>
+							</div>
+							
 						</div>
 						
 					</div>

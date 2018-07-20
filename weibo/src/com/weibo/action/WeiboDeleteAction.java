@@ -5,8 +5,6 @@ import com.weibo.service.WeiboService;
 public class WeiboDeleteAction {
 	Integer WID;
 	
-	
-
 	public Integer getWID() {
 		return WID;
 	}

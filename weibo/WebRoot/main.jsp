@@ -98,7 +98,7 @@
 		style="background: #e0620d ;padding-top: 3px;height:50px;">
 		<div class="container-fluid" style="background: #fff;">
 			<div class="navbar-header ">
-				<a class="navbar-brand " href="#">WEBLOG</a>
+				<a class="navbar-brand " href="main.jsp" >WEBLOG</a>
 			</div>
 				<form class="navbar-form navbar-left"  role="search" action="search2">
 				<div class="form-group" >
@@ -149,7 +149,7 @@
 								<div contentEditable="true" id="content" class="form-control "></div>
 							</div>
 							<div class="col-sm-12" style="margin-top: 12px;">
-								<span class="emoji">表情</span> <span class="pic">图片 </span> <span>
+								<span class="emoji">表情</span> <span>
 									<input type="file" name="" class="select_Img"
 									style="display: none"> <img class="preview" src="">
 								</span>
@@ -374,9 +374,10 @@
         })
         var msge = "<%=name%>";
         if (msge == null || msge == "") {
-            msge = "<a href='index.jsp'>未登录</a>";
+            msge = "<a href='login-register.jsp'>未登录</a>";
         }
         $("#author_id").html(msge);
+        $("#author_id2").html(msge);
     });
 
 	</script>

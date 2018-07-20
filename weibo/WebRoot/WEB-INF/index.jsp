@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.weibo.entity.Usermsg" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	Usermsg user = (Usermsg)session.getAttribute("login");
 	String path = request.getContextPath();
@@ -20,7 +21,7 @@
   
     <base href="<%=basePath%>">
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  >
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>评论</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -139,7 +140,7 @@
                     {
                         topStyle = "";
                     }
-					item += '<div id="comment'+v.comment.id+'" class="comment" style="margin:30px">';
+					item += '<div id="comment'+v.comment.id+'" class="comment" style="margin-top:20px;margin-left:40px">';
 					item += '	<a class="avatar">';
 					item += '		<img src="images/foot.png">';
 					item += '	</a>';
@@ -189,17 +190,17 @@
 		style="background: #e0620d ;padding-top: 3px;height:50px;">
 		<div class="container-fluid" style="background: #fff;">
 			<div class="navbar-header ">
-				<a class="navbar-brand " href="#">WEBLOG</a>
+				<a class="navbar-brand " href="main.jsp">WEBLOG</a>
 			</div>
 				<form class="navbar-form navbar-left"  role="search" action="search2">
 				<div class="form-group" >
 
-					<input type="text" id="keyword" name="keyword" placeholder="#热门话题#" autocomplete="off">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="text" id="keyword" name="keyword" placeholder="#热门话题#" autocomplete="off" escapse="false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					
 					<button  type="submit" style="height: 30px; width: 26px" class="glyphicon glyphicon-search btn_search" ></button><br>
 
 					<select class="line-limit-length" multiple="multiple" id="sel" onchange="test2()" 
-			style="width: 190px;display:none">
+			style="width: 190px;display:none" escapse="false">
 		</select>
 				</div>
 
@@ -208,14 +209,12 @@
 			<div class="collapse navbar-collapse" id="my-navbar-collapse">
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a>欢迎回来！<span id="author_id"></span></a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> 设置 <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a href="<s:url action="logout"/>">注销</a></li>
-							<li><a href="<s:url action="updateload.action?id=%{#session.login.id}"/>">修改个人信息</a></li>
-						</ul></li>
+					<li><a>欢迎回来！<span><%=name %></span></a></li>
+					<li class="dropdown"><a href="<s:url action="logout"/>">注销 </a></li>
+<!-- 						<ul class="dropdown-menu"> -->
+<!-- 							<li><a href="<s:url action="logout"/>">注销</a></li> -->
+<!-- 							<li><a href="<s:url action="updateload.action?id=%{#session.login.id}"/>">修改个人信息</a></li> -->
+<!-- 						</ul></li> -->
 				</ul>
 
 			</div>

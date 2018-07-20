@@ -37,5 +37,6 @@ public String execute() throws Exception{
 	 list2 =weiboService.SearchWeibo(keyword);
 	return "success";
 	
+	
 }
 }

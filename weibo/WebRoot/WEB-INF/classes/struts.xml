@@ -21,9 +21,9 @@
 			<param name="root">js</param>
 		</result>
 	</action>
-	<action name="test3" class="Commentbean" method="test3">
-		<result>index.jsp</result>
-	</action>
+<!-- 	<action name="test3" class="Commentbean" method="test3"> -->
+<!-- 		<result>index.jsp</result> -->
+<!-- 	</action> -->
 	<action name="login" class="com.weibo.action.AdminAction" method="login">
        <result name="success">/main.jsp</result>
        <result name="input">/login-register.jsp</result>
@@ -41,7 +41,7 @@
 		</action>
 		<action name="updateload" class="com.weibo.action.AdminAction"
 			method="updateload">
-			<result name="success">/update.jsp</result>
+			<result name="success">WEB-INF/update.jsp</result>
 		</action>
 		<action name="updateAdmin" class="com.weibo.action.AdminAction"
 			method="updateAdmin">
@@ -57,11 +57,10 @@
 </action>
 
 	<action name="delete" class="WBDAction">
-		<result name="success" type="redirectAction">search2
-		</result>
+		<result name="success" type="redirectAction">search2</result>
 	</action>
 		<action name="turncomment" class="Commentbean" method="turncomment">
-			<result name="success">/index.jsp</result>
+			<result name="success">WEB-INF/index.jsp</result>
 		</action>
 	</package>
 </struts>    

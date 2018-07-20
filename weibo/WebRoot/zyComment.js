@@ -6,7 +6,7 @@ function getauthor(au){
 function checkauthor(){
 	var html=""
 	if(author==""){
-		html="<a href='main.jsp' >请登录</a>"
+		html="<a href='login-register.jsp' >请登录</a>"
 	}
 	else{
 		html=author
@@ -166,6 +166,11 @@ function addFormEvent  (self,wid){
 	// 绑定提交事件
 	$("#submitComment").die("click");
 	$("#submitComment").live("click",function(){
+		if(author=="")
+			{
+				alert("请登录");
+				return;
+			}
 		var param = {
 			"c.author":author,
 			"c.content":$("#commentContent").val(),

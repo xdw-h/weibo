@@ -226,7 +226,7 @@
 	<form action="updateAdmin" method="post">
 <!-- 	<input type="hidden" name="u.id" value="<s:property value="u.id"/>"/> -->
 		<div class="pc-kk-form-list">
-			<input type="text"  name="u.username" value="<%=name %>">
+			<input type="text"  name="u.username" value="<%=name %>" readonly>
 		</div>
 		<div class="pc-kk-form-list pc-kk-form-list-clear">
 			<div class="nice-select" name="nice-select" style="float:rightleft">
